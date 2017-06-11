@@ -1,0 +1,11 @@
+{
+  "title":   "はい",
+  "entries": "sample/src/entries/**/*.md",
+  "pages": {
+    "index.html": "sample/src/pages/index.html",
+    "about.html": "sample/src/pages/about.html"
+  },
+  "templates": {
+    "entry": "sample/src/templates/entry.template.html"
+  }
+}

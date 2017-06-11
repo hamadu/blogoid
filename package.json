@@ -1,0 +1,60 @@
+{
+  "name": "blogoid",
+  "version": "0.0.1",
+  "description": "Simple markdown blog generator",
+  "bin": {
+    "blogoid": "dist/main.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist/*",
+    "prepublish": "npm run clean && npm run build && npm run test",
+    "pretest": "tsc",
+    "test": "nyc --all --reporter=html --reporter=text mocha --compilers ts:espower-typescript/guess ts/test/**/*.spec.ts",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "tslint ts/**/*.ts -e ts/typings/*.d.ts"
+  },
+  "files": [
+    "README.md",
+    "package.json",
+    "dist"
+  ],
+  "nyc": {
+    "include": [
+      "ts/src/**/*.ts",
+      "ts/src/index.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "all": true,
+    "sourceMap": true,
+    "instrument": true
+  },
+  "keywords": [],
+  "author": "hamadu",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "glob": "^7.0.5",
+    "handlebars": "^4.0.5",
+    "marked": "^0.3.6"
+  },
+  "devDependencies": {
+    "@types/assert": "0.0.31",
+    "@types/handlebars": "^4.0.33",
+    "@types/marked": "0.0.28",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.29",
+    "assert": "^1.4.1",
+    "coveralls": "^2.13.1",
+    "cross-env": "^5.0.1",
+    "espower-typescript": "^8.0.0",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.2",
+    "rimraf": "^2.6.1",
+    "tslint": "^5.4.3",
+    "typedoc": "^0.7.1",
+    "typescript": "^2.3.4"
+  }
+}
