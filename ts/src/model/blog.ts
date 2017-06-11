@@ -30,7 +30,17 @@ export class Blog {
     Object.keys(config.partials).map(name => handlebars.registerPartial(name, IO.readFile(config.partials[name])))
 
     // sort entry order by publish time
+    blog.entries.sort((a, b) => b.publishOn.getTime() - a.publishOn.getTime())
 
+    // link
+    blog.entries.forEach((e, idx) => {
+      if (idx-1 >= 0) {
+        e.newer = blog.entries[idx-1]
+      }
+      if (idx+1 < blog.entries.length) {
+        e.older = blog.entries[idx+1]
+      }
+    })
 
     // prepare templates
     blog.templateMap = {}

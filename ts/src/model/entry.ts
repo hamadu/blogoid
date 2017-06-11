@@ -18,8 +18,8 @@ export class Entry {
   public draft: boolean;
   public tags: Tag[];
   public publishOn: Date;
-  public prev: Entry;
-  public next: Entry;
+  public newer: Entry;
+  public older: Entry;
 
   public static generate(path: Path, blog: Blog): Entry {
     const content = IO.readFile(path)

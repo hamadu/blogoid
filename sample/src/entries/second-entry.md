@@ -1,6 +1,6 @@
 {
   "title": "Second Entry",
-  "path": "dir1/second.html",
+  "path": "/dir1/second.html",
   "tags": ["blog", "another tag"],
   "draft": false,
   "publishOn": "2017/06/15",

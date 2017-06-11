@@ -24,18 +24,23 @@
 
       <div class="container">
         <ul class="pagination">
-          <li class="page-item page-prev">
-            <a href="#">
-              <p class="page-item-subtitle">Newer</p>
-              <h3 class="page-item-title">Newer Entry Title</h3>
-            </a>
-          </li>
-          <li class="page-item page-next">
-            <a href="#">
-              <p class="page-item-subtitle">Older</p>
-              <h3 class="page-item-title">Older Entry Title</h3>
-            </a>
-          </li>
+          {{#if entry.newer}}
+            <li class="page-item page-prev">
+              <a href="{{entry.newer.path}}">
+                <p class="page-item-subtitle">Newer</p>
+                <h3 class="page-item-title">{{entry.newer.title}}</h3>
+              </a>
+            </li>
+          {{/if}}
+
+          {{#if entry.older}}
+            <li class="page-item page-next">
+              <a href="{{entry.older.path}}">
+                <p class="page-item-subtitle">Older</p>
+                <h3 class="page-item-title">{{entry.older.title}}</h3>
+              </a>
+            </li>
+          {{/if}}
         </ul>
       </div>
     </div>

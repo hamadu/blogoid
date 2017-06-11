@@ -1,6 +1,6 @@
 {
   "title": "My First Entry",
-  "path": "dir1/first-entry.html",
+  "path": "/dir1/first-entry.html",
   "tags": ["blog", "test"],
   "draft": false,
   "publishOn": "2017/06/13",
