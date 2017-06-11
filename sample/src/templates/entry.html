@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>{{entry.title}} - {{blog.title}}</title>
-    <link rel="stylesheet" href="../styles/style.min.css" />
-    <link rel="stylesheet" href="../styles/custom.css" />
+    {{> styles }}
   </head>
   <body>
     {{> header }}
@@ -46,5 +45,7 @@
     </div>
 
     {{> footer }}
+
+    {{> javascripts }}
   </body>
 </html>
