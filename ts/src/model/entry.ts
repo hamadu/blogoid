@@ -1,6 +1,7 @@
 import { Tag } from './tag'
 import { PageTemplate } from './pageTemplate'
 import * as IO from '../util/io'
+const marked = require('marked')
 
 type TagMap = { [key: string]: Tag }
 type TemplateMap = { [key: string]: PageTemplate }
@@ -10,6 +11,7 @@ export class Entry {
 
   public title: string;
   public path: string;
+  public body: string;
   public template: PageTemplate;
   public draft: boolean;
   public tags: Tag[];
@@ -27,6 +29,7 @@ export class Entry {
     entry.meta = meta
     entry.title = meta.title
     entry.path = meta.path
+    entry.body = body
     entry.publishOn = new Date(meta.publishOn)
     entry.draft = meta.draft
 
@@ -44,7 +47,7 @@ export class Entry {
   public contents(): string {
     return this.template.apply({
       title: this.title,
-      content: "aiueo"
+      content: marked(this.body)
     })
   }
 
