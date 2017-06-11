@@ -4,10 +4,13 @@ import { Page } from './page'
 import { PageTemplate } from './pageTemplate'
 import { Tag } from './tag'
 
+const handlebars = require('handlebars')
+
 import * as IO from '../util/io'
 
 export class Blog {
   public title: string;
+  public author: string;
   public entries: Entry[];
   public entrySets: EntrySet[];
   public pages: Page[];
@@ -18,11 +21,16 @@ export class Blog {
     const blog = new Blog();
 
     blog.title = config.title;
-    blog.entries = IO.g(config.entries).map(path => Entry.generate(path, config));
+    blog.author = config.author;
+    blog.entries = IO.g(config.entries).map(path => Entry.generate(path, blog));
     blog.entrySets = [];
     blog.pages = Object.keys(config.pages).map(path => Page.generate(path, config.pages[path]));
 
-    // sort entry by publish
+    // register partials
+    Object.keys(config.partials).map(name => handlebars.registerPartial(name, IO.readFile(config.partials[name])))
+
+    // sort entry order by publish time
+
 
     // prepare templates
     blog.templateMap = {}

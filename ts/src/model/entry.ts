@@ -1,3 +1,4 @@
+import { Blog } from './blog'
 import { Tag } from './tag'
 import { PageTemplate } from './pageTemplate'
 import * as IO from '../util/io'
@@ -8,6 +9,7 @@ type TemplateMap = { [key: string]: PageTemplate }
 
 export class Entry {
   public meta: EntryConfig;
+  public blog: Blog;
 
   public title: string;
   public path: string;
@@ -19,13 +21,15 @@ export class Entry {
   public prev: Entry;
   public next: Entry;
 
-  public static generate(path: Path, config: BlogConfig): Entry {
+  public static generate(path: Path, blog: Blog): Entry {
     const content = IO.readFile(path)
 
     const [head, body] = content.split('======')
     const meta: EntryConfig = JSON.parse(head)
 
     const entry = new Entry()
+    entry.blog = blog
+
     entry.meta = meta
     entry.title = meta.title
     entry.path = meta.path
@@ -46,7 +50,8 @@ export class Entry {
 
   public contents(): string {
     return this.template.apply({
-      title: this.title,
+      blog: this.blog,
+      entry: this,
       content: marked(this.body)
     })
   }
