@@ -17,6 +17,8 @@ export class Blog {
   public templateMap: { [key: string]: PageTemplate }
   public tagMap: { [key: string]: Tag }
 
+  public recentEntries: Entry[];
+
   public static generate(config: BlogConfig): Blog {
     const blog = new Blog();
 
@@ -66,6 +68,8 @@ export class Blog {
     // apply template and tag
     blog.entries.forEach(e => e.applyTemplate(blog.templateMap))
     blog.entries.forEach(e => e.applyTags(blog.tagMap))
+
+    blog.recentEntries = blog.entries.slice(0, 5)
 
     return blog;
   }
