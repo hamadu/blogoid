@@ -2,9 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>MyPage</title>
+    <title>index.html - {{blog.title}}</title>
+    {{> styles }}
   </head>
   <body>
-    index.html
+    {{> header }}
+
+    <div class="blog-container">
+      <div class="container">
+        <div class="columns">
+          <div class="column col-12">
+            <h1>index.html</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{> footer }}
+
+    {{> javascripts }}
   </body>
 </html>

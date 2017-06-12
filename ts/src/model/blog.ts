@@ -24,7 +24,9 @@ export class Blog {
     blog.author = config.author;
     blog.entries = IO.g(config.entries).map(path => Entry.generate(path, blog));
     blog.entrySets = [];
-    blog.pages = Object.keys(config.pages).map(path => Page.generate(path, config.pages[path]));
+    blog.pages = Object.keys(config.pages).map(path =>
+      Page.generate(blog, path, config.pages[path])
+    );
 
     // register partials
     Object.keys(config.partials).map(name => handlebars.registerPartial(name, IO.readFile(config.partials[name])))
