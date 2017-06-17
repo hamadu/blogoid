@@ -84,9 +84,6 @@ export class Blog {
   }
 
   public dump(out: Path) {
-    console.log(this.staticFiles)
-    
-    // process pages
     this.entries.filter((e) => !e.draft).forEach(entry => entry.dump(out))
     this.pages.forEach(page => page.dump(out))
     this.staticFiles.forEach(file => file.dump(out))
