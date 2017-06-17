@@ -2,6 +2,7 @@ import { Entry } from './entry'
 import { EntrySet } from './entrySet'
 import { Page } from './page'
 import { PageTemplate } from './pageTemplate'
+import { StaticFile } from './staticFile'
 import { Tag } from './tag'
 
 const handlebars = require('handlebars')
@@ -14,6 +15,7 @@ export class Blog {
   public entries: Entry[];
   public entrySets: EntrySet[];
   public pages: Page[];
+  public staticFiles: StaticFile[];
   public templateMap: { [key: string]: PageTemplate }
   public tagMap: { [key: string]: Tag }
 
@@ -26,9 +28,16 @@ export class Blog {
     blog.author = config.author;
     blog.entries = IO.g(config.entries).map(path => Entry.generate(path, blog));
     blog.entrySets = [];
+
+    // pages
     blog.pages = Object.keys(config.pages).map(path =>
       Page.generate(blog, path, config.pages[path])
     );
+
+    // static files
+    blog.staticFiles = Object.keys(config.static).map(name =>
+      StaticFile.generate(name, config.static[name])
+    )
 
     // register partials
     Object.keys(config.partials).map(name => handlebars.registerPartial(name, IO.readFile(config.partials[name])))
@@ -75,7 +84,11 @@ export class Blog {
   }
 
   public dump(out: Path) {
+    console.log(this.staticFiles)
+    
+    // process pages
     this.entries.filter((e) => !e.draft).forEach(entry => entry.dump(out))
     this.pages.forEach(page => page.dump(out))
+    this.staticFiles.forEach(file => file.dump(out))
   }
 }

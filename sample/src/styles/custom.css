@@ -37,3 +37,9 @@ div.blog-container {
   margin-left: auto;
   margin-right: auto;
 }
+
+code {
+  width: 80%;
+  background-color: #333;
+  color: #ddd;
+}

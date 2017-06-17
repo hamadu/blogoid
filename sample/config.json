@@ -2,6 +2,10 @@
   "title": "Blog title",
   "author": "Your name",
   "entries": "sample/src/entries/**/*.md",
+  "static": {
+    "styles/custom.css": "sample/src/styles/custom.css",
+    "styles/spectre.min.css": "sample/src/styles/spectre.min.css"
+  },
   "pages": {
     "index.html": "sample/src/pages/index.html",
     "about.html": "sample/src/pages/about.html"
