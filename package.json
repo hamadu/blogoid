@@ -39,7 +39,8 @@
     "glob": "^7.0.5",
     "handlebars": "^4.0.5",
     "marked": "^0.3.6",
-    "node-static": "^0.7.9"
+    "node-static": "^0.7.9",
+    "opn": "^5.1.0"
   },
   "devDependencies": {
     "@types/assert": "0.0.31",
