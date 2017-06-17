@@ -10,7 +10,6 @@
     "clean": "rimraf dist/*",
     "prepublish": "npm run clean && npm run build && npm run test",
     "pretest": "tsc",
-    "test": "nyc --all --reporter=html --reporter=text mocha --compilers ts:espower-typescript/guess ts/test/**/*.spec.ts",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "tslint ts/**/*.ts -e ts/typings/*.d.ts"
   },
