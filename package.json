@@ -10,6 +10,7 @@
     "clean": "rimraf dist/*",
     "prepublish": "npm run clean && npm run build && npm run test",
     "pretest": "tsc",
+    "test": "nyc --all --reporter=html --reporter=text mocha --compilers ts:espower-typescript/guess ts/test/**/*.spec.ts",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "tslint ts/**/*.ts -e ts/typings/*.d.ts"
   },
@@ -52,6 +53,7 @@
     "cross-env": "^5.0.1",
     "espower-typescript": "^8.0.0",
     "mocha": "^3.4.2",
+    "mock-fs": "^4.4.1",
     "nyc": "^11.0.2",
     "rimraf": "^2.6.1",
     "tslint": "^5.4.3",

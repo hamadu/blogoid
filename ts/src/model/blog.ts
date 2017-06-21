@@ -5,6 +5,9 @@ import { PageTemplate } from './pageTemplate'
 import { StaticFile } from './staticFile'
 import { Tag } from './tag'
 
+import { EntryLinker } from './entryLinker'
+import { TemplateSet } from './templateSet'
+
 const handlebars = require('handlebars')
 
 import * as IO from '../util/io'
@@ -26,12 +29,11 @@ export class Blog {
 
     blog.title = config.title;
     blog.author = config.author;
-    blog.entries = IO.g(config.entries).map(path => Entry.generate(path, blog));
-    blog.entrySets = [];
+    blog.entries = IO.g(config.entries).map(path => Entry.generate(path));
 
     // pages
     blog.pages = Object.keys(config.pages).map(path =>
-      Page.generate(blog, path, config.pages[path])
+      Page.generate(path, config.pages[path])
     );
 
     // static files
@@ -46,46 +48,24 @@ export class Blog {
     blog.entries.sort((a, b) => b.publishOn.getTime() - a.publishOn.getTime())
 
     // link
-    blog.entries.forEach((e, idx) => {
-      if (idx-1 >= 0) {
-        e.newer = blog.entries[idx-1]
-      }
-      if (idx+1 < blog.entries.length) {
-        e.older = blog.entries[idx+1]
-      }
-    })
+    EntryLinker.link(blog.entries)
 
-    // prepare templates
-    blog.templateMap = {}
-    const templates = Object.keys(config.templates).map(name => PageTemplate.generate(name, config.templates[name]));
-    templates.forEach(template => {
-      blog.templateMap[template.name] = template
-    })
+    // tags
+    blog.tagMap = Tag.applyTags(blog.entries)
 
-    // prepare tags
-    blog.tagMap = {}
-    blog.entries.forEach(e => {
-      e.meta.tags.forEach(tagName => {
-        if (!blog.tagMap[tagName]) {
-          blog.tagMap[tagName] = Tag.generate(tagName)
-        }
-        blog.tagMap[tagName].entries.push(e)
-        return blog.tagMap[tagName]
-      })
-    })
+    // templates
+    const templateSet = TemplateSet.generate(config.templates)
+    TemplateSet.applyTemplates(blog.entries, templateSet)
 
-    // apply template and tag
-    blog.entries.forEach(e => e.applyTemplate(blog.templateMap))
-    blog.entries.forEach(e => e.applyTags(blog.tagMap))
-
+    // recent entries
     blog.recentEntries = blog.entries.slice(0, 5)
 
     return blog;
   }
 
   public dump(out: Path) {
-    this.entries.filter((e) => !e.draft).forEach(entry => entry.dump(out))
-    this.pages.forEach(page => page.dump(out))
+    this.entries.filter((e) => !e.draft).forEach(entry => entry.dump(this, out))
+    this.pages.forEach(page => page.dump(this, out))
     this.staticFiles.forEach(file => file.dump(out))
   }
 }

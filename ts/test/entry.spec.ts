@@ -1,7 +1,24 @@
-import * as mocha from "mocha";
+import * as mocha from "mocha"
 import * as assert from "assert"
+import { Blog } from "../src/model/blog"
 import { Entry } from "../src/model/entry"
 
 describe('generator', () => {
-  // const entry = Entry.generate(0, 10, 20, 30)
+  const entry = Entry.generate('ts/test/files/entry.md', null)
+
+  it('title', () => {
+    assert.equal(entry.title, 'My First Entry')
+  })
+
+  it('path', () => {
+    assert.equal(entry.path, '/dir1/first-entry.html')
+  })
+
+  it('body', () => {
+    assert.notEqual(entry.body.indexOf("Yay! It's my first entry!"), -1)
+  })
+
+  it('draft flag', () => {
+    assert.equal(entry.draft, false)
+  })
 })

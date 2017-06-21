@@ -1,4 +1,5 @@
 import * as IO from '../util/io'
+import { Entry } from './entry'
 
 const handlebars = require('handlebars')
 
