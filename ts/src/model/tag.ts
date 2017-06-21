@@ -21,7 +21,7 @@ export class Tag {
     return tagMap
   }
 
-  private static aggregate(entries: Entry[]): TagMap {
+  public static aggregate(entries: Entry[]): TagMap {
     const tagMap: TagMap = {}
     entries.forEach(e => {
       e.meta.tags.forEach(tagName => {

@@ -1,10 +1,9 @@
 import * as mocha from "mocha"
 import * as assert from "assert"
-import { Blog } from "../src/model/blog"
 import { Entry } from "../src/model/entry"
 
 describe('generator', () => {
-  const entry = Entry.generate('ts/test/files/entry.md', null)
+  const entry = Entry.generate('ts/test/files/entry.md')
 
   it('title', () => {
     assert.equal(entry.title, 'My First Entry')
