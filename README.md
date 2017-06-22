@@ -1,5 +1,9 @@
 # blogoid
 
+[![CircleCI](https://circleci.com/gh/hamadu/blogoid.svg?style=svg)](https://circleci.com/gh/hamadu/blogoid)
+
+[![Coverage Status](https://coveralls.io/repos/github/hamadu/blogoid/badge.svg?branch=master)](https://coveralls.io/github/hamadu/blogoid?branch=master)
+
 simple blog(-ish) site generation tool
 
 ## usage
