@@ -5,18 +5,16 @@ import { Entry } from './entry'
 const handlebars = require('handlebars')
 
 export class Page {
-  public path: string;
-  public compiled: HandlebarsTemplateDelegate;
+  public readonly targetPath: string;
+  private readonly compiled: HandlebarsTemplateDelegate;
 
-  public static generate(path: string, filePath: Path): Page {
-    const page = new Page();
-    page.path = path
-    page.compiled = handlebars.compile(IO.readFile(filePath))
-    return page
+  constructor(targetPath: Path, sourceFilePath: Path) {
+    this.targetPath = targetPath
+    this.compiled = handlebars.compile(IO.readFile(sourceFilePath))
   }
 
   public dump(blog: Blog, target: Path): void {
-    IO.writeFile(target + '/' + this.path, this.compiled({
+    IO.writeFile(target + '/' + this.targetPath, this.compiled({
       blog: blog,
       entries: blog.entries
     }))

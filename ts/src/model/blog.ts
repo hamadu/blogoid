@@ -32,9 +32,7 @@ export class Blog {
     blog.entries = IO.g(config.entries).map(path => Entry.generate(path));
 
     // pages
-    blog.pages = Object.keys(config.pages).map(path =>
-      Page.generate(path, config.pages[path])
-    );
+    blog.pages = Object.keys(config.pages).map(path => new Page(path, config.pages[path]));
 
     // static files
     blog.staticFiles = Object.keys(config.static).map(name =>
