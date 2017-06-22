@@ -1,11 +1,9 @@
 import { Blog } from './blog'
 import { Tag } from './tag'
-import { PageTemplate } from './pageTemplate'
 import * as IO from '../util/io'
 const marked = require('marked')
 
 type TagMap = { [key: string]: Tag }
-type TemplateMap = { [key: string]: PageTemplate }
 
 export class Entry {
   public meta: EntryConfig;
@@ -13,7 +11,6 @@ export class Entry {
   public title: string;
   public path: string;
   public body: string;
-  public template: PageTemplate;
   public draft: boolean;
   public tags: Tag[];
   public publishOn: Date;
@@ -46,8 +43,9 @@ export class Entry {
   }
 
   public dump(blog: Blog, target: Path): void {
+    const template = blog.templateSet.getTemplate(this.meta.template)
     const value = this.contents()
     value.blog = blog
-    IO.writeFile(target + '/' + this.path, this.template.apply(value))
+    IO.writeFile(target + '/' + this.path, template.apply(value))
   }
 }

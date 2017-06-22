@@ -2,7 +2,7 @@ import * as mocha from "mocha"
 import * as assert from "assert"
 import { PageTemplate } from "../src/model/pageTemplate"
 
-const template = new PageTemplate('name', 'ts/test/files/template.html')
+const template = new PageTemplate('name', 'ts/test/files/templates/templateOne.html')
 
 describe('constructor', () => {
   it('name', () => {

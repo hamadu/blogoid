@@ -19,7 +19,7 @@ export class Blog {
   public entrySets: EntrySet[];
   public pages: Page[];
   public staticFiles: StaticFile[];
-  public templateMap: { [key: string]: PageTemplate }
+  public templateSet: TemplateSet
   public tagMap: { [key: string]: Tag }
 
   public recentEntries: Entry[];
@@ -54,8 +54,8 @@ export class Blog {
     blog.tagMap = Tag.applyTags(blog.entries)
 
     // templates
-    const templateSet = TemplateSet.generate(config.templates)
-    TemplateSet.applyTemplates(blog.entries, templateSet)
+    blog.templateSet = TemplateSet.generate(config.templates)
+    // TemplateSet.applyTemplates(blog.entries, templateSet)
 
     // recent entries
     blog.recentEntries = blog.entries.slice(0, 5)
