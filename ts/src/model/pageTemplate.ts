@@ -4,19 +4,17 @@ import { Entry } from './entry'
 const handlebars = require('handlebars')
 
 export class PageTemplate {
-  public name: string
-  public path: string
-  public compiled: any  // TODO: use correct function type
+  public readonly name: string
+  private readonly path: string
+  private compiled: any  // TODO: use correct function type
 
-  public static generate(name: string, path: Path): PageTemplate {
-    const template = new PageTemplate();
-    template.name = name
-    template.path = path
-    template.compiled = handlebars.compile(IO.readFile(path))
-    return template
+  constructor(name: string, path: Path) {
+    this.name = name
+    this.path = path
   }
 
   public apply(variables: any) {
+    this.compiled = this.compiled || handlebars.compile(IO.readFile(this.path))
     return this.compiled(variables)
   }
 }

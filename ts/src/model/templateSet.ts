@@ -12,7 +12,7 @@ export class TemplateSet {
   }
 
   public static generate(namePathMap: { [key: string]: string}): TemplateSet {
-    const templates = Object.keys(namePathMap).map(name => PageTemplate.generate(name, namePathMap[name]));
+    const templates = Object.keys(namePathMap).map(name => new PageTemplate(name, namePathMap[name]));
 
     const nameMap: { [key: string]: PageTemplate } = {}
     templates.forEach(template => {
