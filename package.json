@@ -2,10 +2,8 @@
   "name": "blogoid",
   "version": "0.0.1",
   "description": "Simple markdown blog generator",
-  "author": {
-    "hamadu (https://hamadu.net/)"
-  },
-  "license" : "MIT",
+  "author": "hamadu (https://hamadu.net/)",
+  "license": "MIT",
   "bin": {
     "blogoid": "dist/main.js"
   },
