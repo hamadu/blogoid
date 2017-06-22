@@ -34,8 +34,6 @@
     "instrument": true
   },
   "keywords": [],
-  "author": "hamadu",
-  "license": "MIT",
   "dependencies": {
     "commander": "^2.9.0",
     "glob": "^7.0.5",
