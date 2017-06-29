@@ -2,19 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{{entry.title}} - {{blog.title}}</title>
-    {{> styles }}
+    <title><%= entry.title %> - <%= blog.title %></title>
+    <%- include('../partials/styles.html') %>
   </head>
   <body>
-    {{> header }}
+    <%- include('../partials/header.html', { blog: blog }) %>
 
     <div class="blog-container">
       <div class="container">
         <div class="columns">
           <div class="column col-12">
-            <h1>{{entry.title}}</h1>
+            <h1><%= entry.title %></h1>
 
-            {{{content}}}
+            <%- content %>
           </div>
         </div>
       </div>
@@ -23,29 +23,28 @@
 
       <div class="container">
         <ul class="pagination">
-          {{#if entry.newer}}
+          <% if (entry.newer) { %>
             <li class="page-item page-prev">
-              <a href="{{entry.newer.path}}">
+              <a href="<%= entry.newer.path %>">
                 <p class="page-item-subtitle">Newer</p>
-                <h3 class="page-item-title">{{entry.newer.title}}</h3>
+                <h3 class="page-item-title"><%= entry.newer.title %></h3>
               </a>
             </li>
-          {{/if}}
+          <% } %>
 
-          {{#if entry.older}}
+          <% if (entry.older) { %>
             <li class="page-item page-next">
-              <a href="{{entry.older.path}}">
+              <a href="<%= entry.older.path %>">
                 <p class="page-item-subtitle">Older</p>
-                <h3 class="page-item-title">{{entry.older.title}}</h3>
+                <h3 class="page-item-title"><%= entry.older.title %></h3>
               </a>
             </li>
-          {{/if}}
+          <% } %>
         </ul>
       </div>
     </div>
 
-    {{> footer }}
-
-    {{> javascripts }}
+    <%- include('../partials/footer.html') %>
+    <%- include('../partials/javascripts.html') %>
   </body>
 </html>

@@ -1,7 +1,7 @@
 import * as IO from '../util/io'
 import { Entry } from './entry'
 
-const handlebars = require('handlebars')
+const ejs = require('ejs')
 
 export class PageTemplate {
   public readonly name: string
@@ -14,7 +14,7 @@ export class PageTemplate {
   }
 
   public apply(variables: any) {
-    this.compiled = this.compiled || handlebars.compile(IO.readFile(this.path))
+    this.compiled = this.compiled || ejs.compile(IO.readFile(this.path), { filename: this.path })
     return this.compiled(variables)
   }
 }

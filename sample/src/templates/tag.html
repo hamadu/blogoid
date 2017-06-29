@@ -2,14 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Entries tagged with {{name}} - {{blog.title}}</title>
+    <title>Entries tagged with <%= name %> - <%= blog.title %></title>
+    <%- include('../partials/styles.html') %>
   </head>
   <body>
-    {{> header }}
+    <%- include('../partials/header.html', { blog: blog }) %>
 
     <h1>Entries tagged with {{name}}</h1>
     {{entries}}
 
-    {{> footer }}
+    <%- include('../partials/footer.html') %>
+    <%- include('../partials/javascripts.html') %>
   </body>
 </html>

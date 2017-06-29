@@ -8,8 +8,6 @@ import { Tag } from './tag'
 import { EntryLinker } from './entryLinker'
 import { TemplateSet } from './templateSet'
 
-const handlebars = require('handlebars')
-
 import * as IO from '../util/io'
 
 export class Blog {
@@ -39,9 +37,6 @@ export class Blog {
       StaticFile.generate(name, config.static[name])
     )
 
-    // register partials
-    Object.keys(config.partials).map(name => handlebars.registerPartial(name, IO.readFile(config.partials[name])))
-
     // sort entry order by publish time
     blog.entries.sort((a, b) => b.publishOn.getTime() - a.publishOn.getTime())
 
@@ -53,7 +48,6 @@ export class Blog {
 
     // templates
     blog.templateSet = TemplateSet.generate(config.templates)
-    // TemplateSet.applyTemplates(blog.entries, templateSet)
 
     // recent entries
     blog.recentEntries = blog.entries.slice(0, 5)
