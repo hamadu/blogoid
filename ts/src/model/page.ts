@@ -6,7 +6,7 @@ const ejs = require('ejs')
 
 export class Page {
   public readonly targetPath: string;
-  private readonly compiled: HandlebarsTemplateDelegate;
+  private readonly compiled: any;
 
   constructor(targetPath: Path, sourceFilePath: Path) {
     this.targetPath = targetPath

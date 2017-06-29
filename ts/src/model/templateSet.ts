@@ -2,8 +2,6 @@ import * as IO from '../util/io'
 import { PageTemplate } from './pageTemplate'
 import { Entry } from './entry'
 
-const handlebars = require('handlebars')
-
 export class TemplateSet {
   private readonly nameMap: { [key: string]: PageTemplate }
 
