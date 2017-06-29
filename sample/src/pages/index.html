@@ -2,30 +2,29 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>index.html - {{blog.title}}</title>
-    {{> styles }}
+    <title>index.html - <%= blog.title %></title>
+    <%- include('../partials/styles.html') %>
   </head>
   <body>
-    {{> header }}
+    <%- include('../partials/header.html', { blog: blog }) %>
 
     <div class="blog-container">
       <div class="container">
         <div class="columns">
           <div class="column col-12">
-            <h1>Welcome to {{blog.title}}.</h1>
+            <h1>Welcome to <%= blog.title %></h1>
 
             <h3>Recent entries</h3>
 
-            {{#each blog.recentEntries}}
-              <h4><a href="{{path}}">{{publishOn}} - {{title}}</a></h4>
-            {{/each}}
+            <% blog.recentEntries.forEach((entry) => { %>
+              <h4><a href="<%= entry.path %>"><%= entry.publishOn %> - <%= entry.title %></a></h4>
+            <% }) %>
           </div>
         </div>
       </div>
     </div>
 
-    {{> footer }}
-
-    {{> javascripts }}
+    <%- include('../partials/footer.html') %>
+    <%- include('../partials/javascripts.html') %>
   </body>
 </html>

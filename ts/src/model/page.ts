@@ -2,15 +2,15 @@ import * as IO from '../util/io'
 import { Blog } from './blog'
 import { Entry } from './entry'
 
-const handlebars = require('handlebars')
+const ejs = require('ejs')
 
 export class Page {
   public readonly targetPath: string;
-  private readonly compiled: HandlebarsTemplateDelegate;
+  private readonly compiled: any;
 
   constructor(targetPath: Path, sourceFilePath: Path) {
     this.targetPath = targetPath
-    this.compiled = handlebars.compile(IO.readFile(sourceFilePath))
+    this.compiled = ejs.compile(IO.readFile(sourceFilePath), { filename: sourceFilePath })
   }
 
   public dump(blog: Blog, target: Path): void {
