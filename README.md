@@ -37,12 +37,6 @@ Options:
   "templates": {                            # name and path of templates
     "entry": "sample/src/templates/entry.html",
     "tag": "sample/src/templates/tag.html"
-  },
-  "partials": {                             # name and path of template partials(can be used in the templates above)
-    "header": "sample/src/partials/header.html",
-    "footer": "sample/src/partials/footer.html",
-    "javascripts": "sample/src/partials/javascripts.html",
-    "styles": "sample/src/partials/styles.html"
   }
 }
 

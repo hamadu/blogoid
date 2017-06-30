@@ -13,11 +13,5 @@
   "templates": {
     "entry": "sample/src/templates/entry.html",
     "tag": "sample/src/templates/tag.html"
-  },
-  "partials": {
-    "header": "sample/src/partials/header.html",
-    "footer": "sample/src/partials/footer.html",
-    "javascripts": "sample/src/partials/javascripts.html",
-    "styles": "sample/src/partials/styles.html"
   }
 }
