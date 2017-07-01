@@ -1,5 +1,4 @@
 import { Entry } from './entry'
-import { EntrySet } from './entrySet'
 import { Page } from './page'
 import { PageTemplate } from './pageTemplate'
 import { StaticFile } from './staticFile'
@@ -14,7 +13,6 @@ export class Blog {
   public title: string;
   public author: string;
   public entries: Entry[];
-  public entrySets: EntrySet[];
   public pages: Page[];
   public staticFiles: StaticFile[];
   public templateSet: TemplateSet

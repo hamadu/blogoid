@@ -1,22 +1,22 @@
 import * as IO from '../util/io'
 import { Blog } from './blog'
 import { Entry } from './entry'
-
-const ejs = require('ejs')
+import { PageTemplate } from './pageTemplate'
 
 export class Page {
   public readonly targetPath: string;
-  private readonly compiled: any;
+  private readonly template: PageTemplate;
 
   constructor(targetPath: Path, sourceFilePath: Path) {
+    this.template = new PageTemplate('tmp', sourceFilePath);
     this.targetPath = targetPath
-    this.compiled = ejs.compile(IO.readFile(sourceFilePath), { filename: sourceFilePath })
   }
 
   public dump(blog: Blog, target: Path): void {
-    IO.writeFile(target + '/' + this.targetPath, this.compiled({
+    const value = {
       blog: blog,
       entries: blog.entries
-    }))
+    }
+    IO.writeFile(target + '/' + this.targetPath, this.template.apply(value))
   }
 }
