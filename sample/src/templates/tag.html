@@ -15,7 +15,7 @@
             <h1>Entries tagged with <%= name %></h1>
 
             <% entries.forEach((entry) => { %>
-              <h4><a href="<%= entry.path %>"><%= entry.publishOn %> - <%= entry.title %></a></h4>
+              <h4><a href="<%= entry.path %>"><%= DateHelper.format(entry.publishOn) %> - <%= entry.title %></a></h4>
             <% }) %>
           </div>
         </div>
