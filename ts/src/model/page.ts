@@ -16,7 +16,8 @@ export class Page {
   public dump(blog: Blog, target: Path): void {
     IO.writeFile(target + '/' + this.targetPath, this.compiled({
       blog: blog,
-      entries: blog.entries
+      entries: blog.entries,
+      format: require('date-fns/format')
     }))
   }
 }
