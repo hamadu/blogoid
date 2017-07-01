@@ -4,21 +4,19 @@
     "target": "es5",
     "declaration": false,
     "baseUrl": ".",
-    "paths": {
-      "*": [
-        "*",
-        "ts/src/*",
-        "ts/typings/*",
-        "js/lib/*"
-      ]
-    },
     "noImplicitAny": true,
     "inlineSourceMap": true,
     "strictNullChecks": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": ["node", "mocha", "assert"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   },
+  "include": [
+    "**/*.ts"
+  ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }
