@@ -1,16 +1,36 @@
+import { Blog } from './blog'
 import { Entry } from './entry'
+import * as IO from '../util/io'
+
+const ejs = require('ejs')
 
 type TagMap = { [key: string]: Tag }
 
 export class Tag {
-  public name: string
+  public readonly name: string
   public entries: Entry[]
 
-  public static generate(name: string): Tag {
-    const tag = new Tag()
-    tag.name = name
-    tag.entries = []
-    return tag
+  constructor(name: string) {
+    this.name = name
+    this.entries = []
+  }
+
+  public contents(): any {
+    return {
+      name: this.name,
+      entries: this.entries
+    }
+  }
+
+  public getPagePath() {
+    return '/tags/' + this.name + '.html'
+  }
+
+  public dump(blog: Blog, target: Path): void {
+    const template = blog.templateSet.getTemplate('tag')
+    const value = this.contents()
+    value.blog = blog
+    IO.writeFile(target + this.getPagePath(), template.apply(value))
   }
 
   public static applyTags(entries: Entry[]): TagMap {
@@ -26,7 +46,7 @@ export class Tag {
     entries.forEach(e => {
       e.meta.tags.forEach(tagName => {
         if (!tagMap[tagName]) {
-          tagMap[tagName] = Tag.generate(tagName)
+          tagMap[tagName] = new Tag(tagName)
         }
         tagMap[tagName].entries.push(e)
         return tagMap[tagName]

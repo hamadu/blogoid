@@ -13,6 +13,12 @@
         <div class="columns">
           <div class="column col-12">
             <h1><%= entry.title %></h1>
+            <div>
+              Tags:
+              <%  entry.tags.forEach((tag) => { %>
+                <span><a href="<%= tag.getPagePath() %>"><%= tag.name %></a></span>
+              <% }) %>
+            </div>
 
             <%- content %>
           </div>
