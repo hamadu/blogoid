@@ -12,7 +12,7 @@
     "clean": "rimraf dist/*",
     "prepublish": "npm run clean && npm run build && npm run test",
     "pretest": "tsc",
-    "test": "nyc mocha ts/test/**/*.spec.ts",
+    "test": "NODE_ENV=test nyc --all --reporter=html --reporter=text ts-mocha ts/test/*.ts",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "tslint ts/**/*.ts -e ts/typings/*.d.ts"
   },
@@ -26,14 +26,18 @@
       "ts/src/**/*.ts",
       "ts/src/main.ts"
     ],
+    "exclude": [
+      "node_modules",
+      "build"
+    ],
     "extension": [
       ".ts"
     ],
-    "require": [
-      "ts-node/register"
+    "reporter": [
+      "json",
+      "html"
     ],
     "all": true,
-    "cache": false,
     "sourceMap": true,
     "instrument": true
   },
@@ -59,6 +63,7 @@
     "mock-fs": "^4.4.1",
     "nyc": "^11.0.2",
     "rimraf": "^2.6.1",
+    "ts-mocha": "^1.0.3",
     "ts-node": "^3.1.0",
     "tslint": "^5.4.3",
     "typedoc": "^0.7.1",
