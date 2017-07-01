@@ -59,5 +59,9 @@ export class Blog {
     this.entries.filter((e) => !e.draft).forEach(entry => entry.dump(this, out))
     this.pages.forEach(page => page.dump(this, out))
     this.staticFiles.forEach(file => file.dump(out))
+
+    Object.keys(this.tagMap).forEach(name => {
+      this.tagMap[name].dump(this, out)
+    })
   }
 }
