@@ -6,6 +6,8 @@
 .footer {
   background-color: #eee;
   padding: 8px;
+  width: 100%;
+  margin-top: auto;
 }
 
 p.title {
@@ -38,8 +40,14 @@ div.blog-container {
   margin-right: auto;
 }
 
-code {
+pre {
   width: 80%;
+}
+
+code {
+  font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+  font-size: 14px;
+  line-height: 1.2;
   background-color: #333;
   color: #ddd;
 }
