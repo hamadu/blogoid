@@ -13,6 +13,7 @@ Usage: blogoid [options]
 
 Options:
 
+  -s, --scaffold       scaffold sample files and exit
   -h, --help           output usage information
   -V, --version        output the version number
   -c, --config [path]  path to the config.json
@@ -26,17 +27,17 @@ Options:
 {
   "title": "Blog title",                    # site title
   "author": "Your name",                    # site author(s)
-  "entries": "sample/src/entries/**/*.md",  # path to the entries
+  "entries": "src/entries/**/*.md",         # path to the entries
   "static": {                               # path of the static files(it just copy&pasted)
-    "styles/custom.css": "sample/src/styles/custom.css"
+    "styles/custom.css": "src/styles/custom.css"
   },
   "pages": {                                # page to the non-entry pages
-    "index.html": "sample/src/pages/index.html",
-    "about.html": "sample/src/pages/about.html"
+    "index.html": "src/pages/index.html",
+    "about.html": "src/pages/about.html"
   },
   "templates": {                            # name and path of templates
-    "entry": "sample/src/templates/entry.html",
-    "tag": "sample/src/templates/tag.html"
+    "entry": "src/templates/entry.html",
+    "tag": "src/templates/tag.html"
   }
 }
 
@@ -46,7 +47,7 @@ Options:
 
 ```
 $ npm install -g blogoid
-$ # copy sample directories from this repository
+$ blogoid -s --out sample
 $ blogoid --config sample/config.json --out sample/out -p
 ```
 
