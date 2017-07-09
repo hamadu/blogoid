@@ -13,12 +13,17 @@
         <div class="columns">
           <div class="column col-12">
             <h1><%= entry.title %></h1>
+
+            <div class="divider"></div>
+
             <div>
               Tags:
               <%  entry.tags.forEach((tag) => { %>
                 <span><a href="<%= tag.getPagePath() %>"><%= tag.name %></a></span>
               <% }) %>
             </div>
+
+            <div class="divider"></div>
 
             <%- content %>
           </div>

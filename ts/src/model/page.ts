@@ -1,4 +1,4 @@
-import * as IO from '../util/io'
+import IO from '../util/io'
 import { Blog } from './blog'
 import { Entry } from './entry'
 import { PageTemplate } from './pageTemplate'

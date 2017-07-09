@@ -1,6 +1,6 @@
 import { Blog } from './blog'
 import { Tag } from './tag'
-import * as IO from '../util/io'
+import IO from '../util/io'
 const marked = require('marked')
 
 type TagMap = { [key: string]: Tag }

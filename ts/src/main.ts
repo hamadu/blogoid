@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 import { Blog } from './model/blog'
-import * as IO from './util/io'
+import IO from './util/io'
 const cmd = require('commander');
+const path = require('path');
 
 cmd.version('0.0.1')
    .option('-c, --config [path]', 'path to the config.json')
@@ -15,6 +16,10 @@ if (!cmd.config || !cmd.out) {
 }
 
 const config = IO.readBlogConfig(cmd.config)
+
+// TRICK: change read directory temporary to resolve a source file path relative to (directory of) config.json.
+IO.baseReadPath = path.dirname(cmd.config) + '/'
+
 const blog = Blog.generate(config)
 blog.dump(cmd.out)
 

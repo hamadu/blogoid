@@ -1,4 +1,4 @@
-import * as IO from '../util/io'
+import IO from '../util/io'
 import { Entry } from './entry'
 import { DateHelper } from '../helper/dateHelper'
 
@@ -12,10 +12,10 @@ export class PageTemplate {
   constructor(name: string, path: Path) {
     this.name = name
     this.path = path
+    this.compiled = ejs.compile(IO.readFile(this.path), { filename: IO.baseReadPath + this.path })
   }
 
   public apply(variables: any) {
-    this.compiled = this.compiled || ejs.compile(IO.readFile(this.path), { filename: this.path })
     variables.DateHelper = DateHelper;
     return this.compiled(variables)
   }

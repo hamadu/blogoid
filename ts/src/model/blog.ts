@@ -7,7 +7,7 @@ import { Tag } from './tag'
 import { EntryLinker } from './entryLinker'
 import { TemplateSet } from './templateSet'
 
-import * as IO from '../util/io'
+import IO from '../util/io'
 
 export class Blog {
   public title: string;

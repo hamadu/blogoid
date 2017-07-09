@@ -1,8 +1,6 @@
 import { Blog } from './blog'
 import { Entry } from './entry'
-import * as IO from '../util/io'
-
-const ejs = require('ejs')
+import IO from '../util/io'
 
 type TagMap = { [key: string]: Tag }
 

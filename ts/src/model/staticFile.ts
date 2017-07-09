@@ -1,4 +1,4 @@
-import * as IO from '../util/io'
+import IO from '../util/io'
 
 export class StaticFile {
   public source: string;
