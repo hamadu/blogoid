@@ -10,7 +10,6 @@
   "scripts": {
     "build": "tsc",
     "clean": "rimraf dist/*",
-    "prepublish": "npm run clean && npm run build && npm run test",
     "pretest": "tsc",
     "test": "NODE_ENV=test nyc --all --reporter=html --reporter=text ts-mocha ts/test/*.ts",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -19,7 +18,8 @@
   "files": [
     "README.md",
     "package.json",
-    "dist"
+    "dist",
+    "sample"
   ],
   "nyc": {
     "include": [
