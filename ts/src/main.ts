@@ -8,7 +8,7 @@ const path = require('path')
 const process = require('process')
 const glob = require('glob')
 
-cmd.version('0.0.1')
+cmd.version('0.0.2')
    .option('-s, --scaffold',      'scaffold sample source files', false)
    .option('-c, --config [path]', 'path to the config.json')
    .option('-o, --out [path]',    'output path')
