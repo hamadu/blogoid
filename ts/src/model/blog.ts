@@ -18,8 +18,6 @@ export class Blog {
   public templateSet: TemplateSet
   public tagMap: { [key: string]: Tag }
 
-  public recentEntries: Entry[];
-
   public static generate(config: BlogConfig): Blog {
     const blog = new Blog();
 
@@ -47,10 +45,11 @@ export class Blog {
     // templates
     blog.templateSet = TemplateSet.generate(config.templates)
 
-    // recent entries
-    blog.recentEntries = blog.entries.slice(0, 5)
-
     return blog;
+  }
+
+  public recentEntries(num: number): Entry[] {
+    return this.entries.slice(0, num || 10);
   }
 
   public dump(out: Path) {
