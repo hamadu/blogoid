@@ -16,7 +16,7 @@
 
             <h3>Recent entries</h3>
 
-            <% blog.recentEntries.forEach((entry) => { %>
+            <% blog.recentEntries(5).forEach((entry) => { %>
               <h4><a href="<%= entry.path %>"><%= DateHelper.format(entry.publishOn, 'YYYY/MM/DD HH:mm:ss') %> - <%= entry.title %></a></h4>
             <% }) %>
           </div>
