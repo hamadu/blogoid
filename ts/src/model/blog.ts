@@ -10,20 +10,26 @@ import { TemplateSet } from './templateSet'
 import IO from '../util/io'
 
 export class Blog {
+  public url: string;
   public title: string;
+  public description: string;
   public author: string;
   public entries: Entry[];
   public pages: Page[];
   public staticFiles: StaticFile[];
   public templateSet: TemplateSet
   public tagMap: { [key: string]: Tag }
+  public options: { [key: string]: string }
 
   public static generate(config: BlogConfig): Blog {
     const blog = new Blog();
 
+    blog.url = config.url;
     blog.title = config.title;
     blog.author = config.author;
+    blog.description = config.description;
     blog.entries = IO.g(config.entries).map(path => Entry.generate(path));
+    blog.options = config.options;
 
     // pages
     blog.pages = Object.keys(config.pages).map(path => new Page(path, config.pages[path]));

@@ -10,6 +10,7 @@ export class Entry {
 
   public title: string;
   public path: string;
+  public description: string;
   public body: string;
   public draft: boolean;
   public tags: Tag[];
@@ -27,6 +28,7 @@ export class Entry {
 
     entry.meta = meta
     entry.title = meta.title
+    entry.description = meta.description
     entry.path = meta.path
     entry.body = body
     entry.publishOn = new Date(meta.publishOn)
